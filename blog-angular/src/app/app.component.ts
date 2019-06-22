@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'blog-angular';
+  identity: any;
+  token: any;
+
+  constructor(public _userService: UserService)
+  {
+    this.identity = _userService.getIdentity();
+    this.token = _userService.getToken(); 
+  }
 }

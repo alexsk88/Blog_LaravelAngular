@@ -17,15 +17,6 @@ class UserController extends Controller
     public function register (Request $request)
     {
 
-        $data = array(
-            'status'  => 'error',
-            'code'    => 404,
-            'message' => 'Error al crear usuario',
-            'error'   => 'none'
-        );
-
-
-
         // Asi es como obtengo un valor de un
         // formulario por Post
         // $name = $request->input('raro');
@@ -93,9 +84,13 @@ class UserController extends Controller
             if ($validate->fails())
             {
                 // Si validatoR fALLA HAGA ESTO
-                $data['status'] = 'EROOR';
-                $data['code'] = 400;
-                $data['error'] = $validate->errors();   
+             $data = array(
+                    'code'    => 400,
+                    'status'  => 'error',
+                    'message' => 'Hay errores en la validacion',
+                    'nameerror'  => $validate->errors()
+                );
+
             }
             else
             {
@@ -125,17 +120,22 @@ class UserController extends Controller
 
                 $user->save();
                         
-                $data['status']  = 'Weell Done';
-                $data['code']    = 200;
-                $data['message'] = 'Usuario Creado Satisfactoriamente';
-                $data['user'] = $user;
+                $data = array(
+                    'code'    => 200,
+                    'status'  => 'success',
+                    'message' => 'Usuario Creado Satisfactoriamente',
+                    'user'  =>$user
+                );
+
             }
         }
         else
         {
-            $data['status']  = 'Datos No valida';
-            $data['code']    = 402;
-            $data['message'] = 'Los Datos no son validos';
+            $data = array(
+                'code'    => 400,
+                'status'  => 'errore',
+                'message' => 'Los Datos no son validos'
+            );
         }
 
         // return "Hola como estas : $name ";
@@ -181,6 +181,11 @@ class UserController extends Controller
                 $pwc = hash('sha256',$params['password']);                
                 $singup = $jwtAuth->singup($params['email'],$pwc);
 
+                if(!empty($params['getToken']))
+                {
+                    $singup = $jwtAuth->singup($params['email'],$pwc, true);
+                    $singup = $singup[0];
+                }
             }
         // Devolver Token  o datos
 
