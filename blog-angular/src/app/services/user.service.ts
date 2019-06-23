@@ -49,6 +49,19 @@ export class UserService
     return this.http.post(this.url+'login',params, {headers: headers});
   }
 
+  updateuser(token, user): Observable<any>
+  {
+    let json = JSON.stringify(user);
+    // Lo convierto a string para enviarlo al API
+
+    let params = "json="+json;
+    let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded')
+                                   .set('Authorization', token);
+
+    return this.http.put(this.url+'user/update',params,{headers: headers});
+
+  }
+
   getIdentity()
   {
     let identity = JSON.parse(localStorage.getItem('identity'));
@@ -78,5 +91,10 @@ export class UserService
     }
 
     return this.token;
+  }
+
+  traerUser(id): Observable<any>
+  {
+    return this.http.get(this.url+'user/detail/'+id);
   }
 }

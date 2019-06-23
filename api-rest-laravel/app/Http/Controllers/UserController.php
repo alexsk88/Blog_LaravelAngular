@@ -230,19 +230,30 @@ class UserController extends Controller
             unset($params_array['role']);
             unset($params_array['password']);
             unset($params_array['created_at']);
-            unset($params_array['rember_token']);
+            unset($params_array['remember_token']);
 
             // Actualizar en user en la bbddd
 
             $userupdate = User::where('id', $user[0]->sub)->update($params_array);
+            
+            // ESto es para enviar el nuevo objeto actualizado
+            // PORQUE VICTOR SE ME HACE QUE HACE UN MONTON DE CODIGO
+            // PARA ACTUALIZAR EL USUARIO
+            if($userupdate)
+            {
+                $usernew = User::where('id', $user[0]->sub)->get();
+                $usernew[0]['password'] = null;
+                unset($usernew[0]['updated_at']);
+                unset($usernew[0]['remember_token']);
+                unset($usernew[0]['created_at']);
+            }
 
-        
             // Devolver array con resultado
 
             $data = array(
                 'code'    => 200,
                 'status'  => 'success',
-                'user' => $userupdate,
+                'user' => $usernew[0],
                 'changes' => $params_array
             );
         }
