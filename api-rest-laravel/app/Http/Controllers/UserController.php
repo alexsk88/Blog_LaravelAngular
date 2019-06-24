@@ -323,7 +323,8 @@ class UserController extends Controller
                 $data = array(
                     'code'    => 200,
                     'status'  => 'success',
-                    'mensaje' => 'Imagen subida'
+                    'mensaje' => 'Imagen subida',
+                    'imagename' => $image_name 
                 );
                 
             }

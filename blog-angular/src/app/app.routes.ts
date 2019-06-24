@@ -7,6 +7,8 @@ import { HomeComponent } from './components/home/home.component';
 import { ErrorComponent } from './components/error/error.component';
 import { CategoriasComponent } from './components/categorias/categorias.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
+import { CategoryNewComponent } from './components/category-new/category-new.component';
+import { PostNewComponent } from './components/post-new/post-new.component';
 
 const ROUTES: Routes = [
     {path: '', component: HomeComponent},
@@ -15,6 +17,8 @@ const ROUTES: Routes = [
     {path: 'logout/:sure', component: LoginComponent},
     {path: 'home', component: HomeComponent},
     {path: 'ajustes', component: UserEditComponent},
+    {path: 'crear-categoria', component: CategoryNewComponent},
+    {path: 'crear-post', component: PostNewComponent},
     {path: 'registro', component: RegisterComponent},
     {path: 'categorias', component: CategoriasComponent},
     {path: 'error', component: ErrorComponent},

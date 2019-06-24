@@ -24,7 +24,7 @@ class ApiAuthMiddleware
             $data = array(
                 'code'    => 400,
                 'status'  => 'error',
-                'mensaje' => 'El usuario LOGEADO'
+                'mensaje' => 'El usuario NO ESTA LOGEADO'
             );
             return response()->json($data, $data['code']);
         }

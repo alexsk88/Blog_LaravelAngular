@@ -15,8 +15,16 @@
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" [routerLink]="[ '/home' ]">Inicio <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" [routerLink]="[ '/categorias']">Categorias</a>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+             role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             Categorias
+             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a *ngFor="let category of categories" class="dropdown-item" href="#">
+                  {{ category.name}}
+                </a>
+              </div>
+            </a>
         </li>
       </ul>
 
@@ -30,14 +38,20 @@
       </ul>
 
       <ul class="navbar-nav navbar-right" *ngIf="identity && identity.name">
+          <li *ngIf="identity && identity.userall.image" class="nav-item">
+              <div class="avatar_mask m-0 p-0 ">
+                  <img src="{{ urlapi + 'user/avatar/' + identity.userall.image }}" 
+                  alt="Imagen Avatar User">
+              </div>
+            </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{ identity.name  + ' '+ identity.surname}}
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Crear post</a>
-            <a class="dropdown-item" href="#">Crear categoria</a>
+            <a class="dropdown-item" [routerLink]="['/crear-post']">Crear post</a>
+            <a class="dropdown-item" [routerLink]="['/crear-categoria']">Crear categoria</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Mi perfil</a>
             <a class="dropdown-item" [routerLink]="[ '/ajustes']">Ajustes</a>

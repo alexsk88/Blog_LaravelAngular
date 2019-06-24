@@ -58,11 +58,16 @@ class JwtAuth
         if ($singup)
         {
             // Si esta validados los datos then
+
+            unset($user['created_at']);
+            unset($user['updated_at']);
+            
             $token = array([
                 'sub'      =>  $user['id'],
                 'email'    =>  $user['email'],
                 'name'     =>  $user['name'],
                 'surname'  =>  $user['surname'],
+                'userall'  =>  $user,
                 'iat'      =>  time(),
                 'exp'      =>   time() + (7 * 24 * 60 * 60)
             ]);

@@ -307,7 +307,8 @@ class PostController extends Controller
                 $data = array(
                     'code'    => 200,
                     'status'  => 'success',
-                    'mensaje' => 'Imagen subida'
+                    'mensaje' => 'Imagen subida',
+                    'nameimage'=> $image_name
                 );
                 
             }

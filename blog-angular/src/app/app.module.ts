@@ -6,6 +6,10 @@ import { FormsModule } from '@angular/forms';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import 'froala-editor/js/plugins.pkgd.min.js';
 
+// File UpLoader
+import { AngularFileUploaderModule } from "angular-file-uploader";
+
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -15,6 +19,8 @@ import { ErrorComponent } from './components/error/error.component';
 import { CategoriasComponent } from './components/categorias/categorias.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
+import { CategoryNewComponent } from './components/category-new/category-new.component';
+import { PostNewComponent } from './components/post-new/post-new.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +30,9 @@ import { UserEditComponent } from './components/user-edit/user-edit.component';
     HomeComponent,
     ErrorComponent,
     CategoriasComponent,
-    UserEditComponent
+    UserEditComponent,
+    CategoryNewComponent,
+    PostNewComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +41,7 @@ import { UserEditComponent } from './components/user-edit/user-edit.component';
     HttpClientModule,
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
-    
+    AngularFileUploaderModule
   ],
   providers: [
     APPROUTINGPROVIDERS 

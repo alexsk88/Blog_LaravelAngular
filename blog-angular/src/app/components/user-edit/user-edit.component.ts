@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
+import { urlglobal } from '../../services/apiglobal'
 
 @Component({
   selector: 'app-user-edit',
@@ -15,63 +16,72 @@ export class UserEditComponent implements OnInit
   identity;
   token;
   status = '';
+  urlapi = urlglobal.url;
+
+  loading = true;
+
   opcionesfroala: Object = {
     toolbarButtons: {
       'moreText': {
-        'buttons': ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 
+        'buttons': ['bold', 'italic', 'underline', 'strikeThrough', 'paragraphFormat', 'superscript', 
         'fontFamily', 'fontSize', 'textColor', 'backgroundColor', 'inlineClass', 'inlineStyle',
          'clearFormatting']
-      },
-      'moreParagraph': {
-        'buttons': ['alignLeft', 'alignCenter', 'formatOLSimple', 'alignRight', 'alignJustify',
-         'formatOL', 'formatUL', 'paragraphFormat', 'paragraphStyle', 'lineHeight', 'outdent',
-          'indent', 'quote']
-      },
-      'moreMisc': {
-        'buttons': ['undo', 'redo', 'fullscreen', 'print', 'getPDF', 'spellChecker', 
-        'selectAll', 'html', 'help'],
-        'buttonsVisible': 6
       }
+    }
+  };
+
+  afuConfig = {
+    multiple: false,
+    formatsAllowed: ".jpg,.png, .gig, .jpeg",
+    maxSize: "50",
+    uploadAPI:  {
+      url: this.urlapi + 'user/upload',
+      headers: {
+      "Authorization" : this._userService.getToken()
+      }
+    },
+    theme: "attachPin",
+    hideProgressBar: false,
+    hideResetBtn: false,
+    hideSelectBtn: false,
+    replaceTexts: {
+      selectFileBtn: 'Select Files',
+      resetBtn: 'Reset',
+      uploadBtn: 'Upload',
+      dragNDropBox: 'Drag N Drop',
+      attachPinBtn: 'Sube Tu Avatar de usuario',
+      afterUploadMsg_success: 'Successfully Uploaded !',
+      afterUploadMsg_error: 'Upload Failed !'
     }
   };
 
 
   constructor(private _userService: UserService)
   {
-    this.user = new User(1,'','','ROLE_USER','','','','');
+    // this.user = new User(1,'','','ROLE_USER','','','','');
 
     this.identity = _userService.getIdentity();
     this.token = _userService.getToken();
 
-    // PARCHE RECHAMBON,
-    // PERO ESTO ES POR SER REBELDE Y NO SEGUIR AL PIE DE LA 
-    // LETRA EL CURSO Y QUERER CCAMBIAR
-
-    let id;
-
-    if(this.identity.sub)
-    {
-      id = this.identity.sub;
-    }
-    else{
-      id = this.identity.id;
-    }
-    // FIN DEL PARCHE
-
-    this._userService.traerUser(id).subscribe(
-      datosuser =>
-      {
-        delete datosuser.user['created_at'];
-        delete datosuser.user['updated_at'];
-        delete datosuser.user['remember_token'];
-        // console.log(datosuser.user);
-        this.user = datosuser.user;
-      }
+    this.user = new User(
+      this.identity.userall.id,
+      this.identity.userall.name,
+      this.identity.userall.surname,      
+      this.identity.userall.role,      
+      this.identity.userall.email, 
+      '',      
+      this.identity.userall.description,      
+      this.identity.userall.image,      
     );
+
+    console.log(this.identity.userall);
+    
+
   }
 
   ngOnInit() 
   {
+
   }
 
   enviarUpdateUser(form)
@@ -83,7 +93,14 @@ export class UserEditComponent implements OnInit
 
       if(response.status == 'success')
       {
-        localStorage.setItem('identity', JSON.stringify(this.user));
+        this.identity.userall = this.user;
+        this.identity.name = this.user.name;
+        this.identity.surname = this.user.surname;
+        this.identity.email = this.user.email;
+        console.log(this.identity.userall);
+        console.log("toke",this.identity);
+        
+        localStorage.setItem('identity', JSON.stringify(this.identity));
       }
     },
     error => 
@@ -94,4 +111,10 @@ export class UserEditComponent implements OnInit
     );
   }
 
+  ImagenUpload(datos)
+  {
+     //console.log("IMAGEN RTA", JSON.parse( datos.response));
+     let data = JSON.parse( datos.response);
+     this.user.image = data.imagename;
+  }
 }
