@@ -21,6 +21,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { CategoryNewComponent } from './components/category-new/category-new.component';
 import { PostNewComponent } from './components/post-new/post-new.component';
+import { ImagenonePipe } from './pipes/imagenone.pipe';
+import { PostDetailComponent } from './components/post-detail/post-detail.component';
+import { PostEditComponent } from './components/post-edit/post-edit.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,10 @@ import { PostNewComponent } from './components/post-new/post-new.component';
     CategoriasComponent,
     UserEditComponent,
     CategoryNewComponent,
-    PostNewComponent
+    PostNewComponent,
+    ImagenonePipe,
+    PostDetailComponent,
+    PostEditComponent
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,8 @@ import { CategoriasComponent } from './components/categorias/categorias.componen
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { CategoryNewComponent } from './components/category-new/category-new.component';
 import { PostNewComponent } from './components/post-new/post-new.component';
+import { PostDetailComponent } from './components/post-detail/post-detail.component';
+import { PostEditComponent } from './components/post-edit/post-edit.component';
 
 const ROUTES: Routes = [
     {path: '', component: HomeComponent},
@@ -19,6 +21,8 @@ const ROUTES: Routes = [
     {path: 'ajustes', component: UserEditComponent},
     {path: 'crear-categoria', component: CategoryNewComponent},
     {path: 'crear-post', component: PostNewComponent},
+    {path: 'entrada/:id', component: PostDetailComponent},
+    {path: 'editar-entrada/:id', component: PostEditComponent},
     {path: 'registro', component: RegisterComponent},
     {path: 'categorias', component: CategoriasComponent},
     {path: 'error', component: ErrorComponent},
