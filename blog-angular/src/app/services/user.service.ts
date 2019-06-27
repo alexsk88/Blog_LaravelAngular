@@ -51,6 +51,7 @@ export class UserService
 
   updateuser(token, user): Observable<any>
   {
+    user.description = urlglobal.htmlEntities(user.description);
     let json = JSON.stringify(user);
     // Lo convierto a string para enviarlo al API
 
@@ -96,5 +97,12 @@ export class UserService
   traerUser(id): Observable<any>
   {
     return this.http.get(this.url+'user/detail/'+id);
+  }
+
+  getPosts(id): Observable<any>
+  {
+    let headers = new HttpHeaders().set('Content-Type', 'aplication/x-www-form-urlencoded')
+    
+    return this.http.get(`${this.url}post/user/${id}`, {headers})
   }
 }

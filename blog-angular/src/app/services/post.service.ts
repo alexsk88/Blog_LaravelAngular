@@ -17,6 +17,10 @@ export class PostService {
 
   create(token, post): Observable<any>
   {
+    // El JSON se rompe porque HTML entities, asi que este metodo limpia esa basura 
+    // JJAJAJ basura no es pero casi que no puedo solucionarlo
+    post.content = urlglobal.htmlEntities(post.content);
+
     let json = JSON.stringify(post);
     let params = "json="+json;
                                         
@@ -43,6 +47,7 @@ export class PostService {
 
   updatepost(token, post, id): Observable<any>
   {
+    post.content = urlglobal.htmlEntities(post.content);
     let json = JSON.stringify(post);
     let params = "json="+json;
 

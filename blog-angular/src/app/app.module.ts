@@ -25,6 +25,7 @@ import { ImagenonePipe } from './pipes/imagenone.pipe';
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
 import { PostEditComponent } from './components/post-edit/post-edit.component';
 import { CategoryDetailComponent } from './components/category-detail/category-detail.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { CategoryDetailComponent } from './components/category-detail/category-d
     ImagenonePipe,
     PostDetailComponent,
     PostEditComponent,
-    CategoryDetailComponent
+    CategoryDetailComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,7 @@ import { CategoryDetailComponent } from './components/category-detail/category-d
     AngularFileUploaderModule
   ],
   providers: [
-    APPROUTINGPROVIDERS 
+    APPROUTINGPROVIDERS
   ],
   bootstrap: [AppComponent]
 })

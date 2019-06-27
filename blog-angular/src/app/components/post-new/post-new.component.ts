@@ -22,6 +22,7 @@ export class PostNewComponent implements OnInit {
   urlapi = urlglobal.url;
   
   opcionesfroala: Object = {
+    language: 'es',
     toolbarButtons: {
       'moreText': {
         'buttons': ['bold', 'italic', 'underline', 'strikeThrough', 'paragraphFormat', 'superscript', 

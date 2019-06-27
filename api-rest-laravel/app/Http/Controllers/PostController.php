@@ -351,8 +351,20 @@ class PostController extends Controller
 
     public function getPostByUser($id)
     {
-        $post = Post::where('user_id' , $id)->get();
+        $postold = Post::where('user_id' , $id)->get();
 
+        $post = array();
+
+        // Hace Consulta
+            // Segun los post que halla obtenido de usuario
+            // Agreguele info de la categoria y el Uuario
+        foreach ($postold as $p ) {
+            $ide = Post::find($p['id'])->load('user')->load('category');
+            array_push($post, $ide);
+        }
+       // Hace Consulta
+
+        //  $post = Post::find($id);
         return response()->json([
             'status' => 'success',
             'post' => $post

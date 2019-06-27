@@ -21,6 +21,7 @@ export class UserEditComponent implements OnInit
   loading = true;
 
   opcionesfroala: Object = {
+    language: 'es',
     toolbarButtons: {
       'moreText': {
         'buttons': ['bold', 'italic', 'underline', 'strikeThrough', 'paragraphFormat', 'superscript', 
