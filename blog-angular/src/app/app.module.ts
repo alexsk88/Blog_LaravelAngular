@@ -24,6 +24,7 @@ import { PostNewComponent } from './components/post-new/post-new.component';
 import { ImagenonePipe } from './pipes/imagenone.pipe';
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
 import { PostEditComponent } from './components/post-edit/post-edit.component';
+import { CategoryDetailComponent } from './components/category-detail/category-detail.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { PostEditComponent } from './components/post-edit/post-edit.component';
     PostNewComponent,
     ImagenonePipe,
     PostDetailComponent,
-    PostEditComponent
+    PostEditComponent,
+    CategoryDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -20,7 +20,8 @@
              role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
              Categorias
              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a *ngFor="let category of categories" class="dropdown-item" href="#">
+                <a *ngFor="let category of categories" class="dropdown-item" 
+                [routerLink]="['categoria', category.id]">
                   {{ category.name}}
                 </a>
               </div>
