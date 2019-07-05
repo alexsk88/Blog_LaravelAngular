@@ -4,6 +4,8 @@ Backend con laravel y front con Angular
 ## Base de datos MySql
 Se utiliza el MODELO ORM
 
+## API RESTFUl 
+
 
 <img src="p1.jpg" alt="Pruebas" width="100%">
 <img src="p2.jpg" alt="Pruebas" width="100%">
